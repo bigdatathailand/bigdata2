@@ -5,56 +5,84 @@ services:
       context: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=admin
+    networks: ["vnet"]
   zoo1:
     build:
       context: ./zookeeper
       args:
         id: 1
+    networks: ["vnet"]
   zoo2:
     build:
       context: ./zookeeper
       args:
         id: 2
+    networks: ["vnet"]
 
   zoo3:
     build:
       context: ./zookeeper
       args:
         id: 3
+    networks: ["vnet"]
 
   namenode:
     build:
       context: ./namenode
+    networks: ["vnet"]
     ports:
       - "50070:50070"
+    
 
   datanode:
     build:
       context: ./datanode
+    networks: ["vnet"]
 
   namenode2:
     build:
       context: ./namenode2
+    networks: ["vnet"]
 
   yarn:
     build:
       context: ./yarn
+    networks: ["vnet"]
 
   historyserver:
     build:
       context: ./historyserver
+    networks: ["vnet"]
 
   hbasemaster:
     build:
       context: ./hbasemaster
-    hostname: hbasemaster
+    networks: ["vnet"]
+    hostname: hbasemaster.vnet
     ports:
       - "60010:60010"
-    dns:
-      - 127.0.0.1
-  hbaseregion:
+
+    networks:
+      vnet:
+        aliases:
+           - hbasemaster.vnet
+    depends_on:
+      - zoo1
+      - namenode
+
+  #this is a harcoded one since hbase require hostname and reverse dns to match.
+  #will need to use script to gen this
+  hbaseregion-1:
     build:
       context: ./hbaseregion
-    hostname: hbaseregion
-    dns:
-      - 127.0.0.1
+    networks:
+      vnet:
+        aliases:
+           - bigdata2_hbaseregion-1_1.bigdata2_vnet
+    hostname: bigdata2_hbaseregion-1_1.bigdata2_vnet
+    depends_on:
+      - zoo1
+
+
+networks:
+  vnet:
