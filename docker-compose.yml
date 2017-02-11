@@ -1,0 +1,60 @@
+version: "3"
+services:
+  mariadb:
+    build:
+      context: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+  zoo1:
+    build:
+      context: ./zookeeper
+      args:
+        id: 1
+  zoo2:
+    build:
+      context: ./zookeeper
+      args:
+        id: 2
+
+  zoo3:
+    build:
+      context: ./zookeeper
+      args:
+        id: 3
+
+  namenode:
+    build:
+      context: ./namenode
+    ports:
+      - "50070:50070"
+
+  datanode:
+    build:
+      context: ./datanode
+
+  namenode2:
+    build:
+      context: ./namenode2
+
+  yarn:
+    build:
+      context: ./yarn
+
+  historyserver:
+    build:
+      context: ./historyserver
+
+  hbasemaster:
+    build:
+      context: ./hbasemaster
+    hostname: hbasemaster
+    ports:
+      - "60010:60010"
+    dns:
+      - 127.0.0.1
+  hbaseregion:
+    build:
+      context: ./hbaseregion
+    hostname: hbaseregion
+    dns:
+      - 127.0.0.1
