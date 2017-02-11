@@ -31,7 +31,10 @@ RUN echo "127.0.0.1    namenode" >> /etc/hosts && \
     su hdfs -c "hadoop fs -chmod -R 1777 /user/history" && \
     su hdfs -c "hadoop fs -chown mapred:hadoop /user/history" && \
     su hdfs -c "hadoop fs -mkdir /hbase" && \
-    su hdfs -c "hadoop fs -chown hbase /hbase"
+    su hdfs -c "hadoop fs -chown hbase /hbase" && \
+    su hdfs -c "hadoop fs -mkdir -p /user/hive/warehouse" && \
+    su hdfs -c "hadoop fs -chown hive /user/hive" && \
+    su hdfs -c "hadoop fs -chmod -R 1777 /user/hive/warehouse"
 
 CMD service hadoop-hdfs-namenode start && \
     service hadoop-hdfs-datanode start && \

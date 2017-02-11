@@ -83,6 +83,20 @@ services:
     depends_on:
       - zoo1
 
+  hivemetastore:
+    build:
+      context: ./hivemetastore
+    depends_on:
+      - mariadb
+    networks: ["vnet"]
+
+  hiveserver2:
+    build:
+      context: ./hiveserver2
+    depends_on:
+      - hivemetastore
+      - namenode
+    networks: ["vnet"]
 
 networks:
   vnet:
