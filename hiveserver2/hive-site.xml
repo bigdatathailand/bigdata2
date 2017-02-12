@@ -40,14 +40,15 @@
 </property>
 
 <property>
-  <name>hive.metastore.warehouse.dir</name>
-  <value>/user/hive/warehouse</value>
-</property>
-
-<property>
   <name>hive.metastore.uris</name>
   <value>thrift://hivemetastore:9083</value>
   <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
+</property>
+
+<property>
+  <name>hive.server2.thrift.port</name>
+  <value>10000</value>
+  <description>TCP port number to listen on, default 10000</description>
 </property>
 
 </configuration>

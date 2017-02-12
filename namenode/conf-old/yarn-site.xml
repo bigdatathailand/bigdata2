@@ -20,7 +20,7 @@
 <configuration>
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>localhost</value>
+    <value>yarn</value>
   </property>   
   <property>
     <description>Classpath for typical applications.</description>

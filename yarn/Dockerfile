@@ -11,4 +11,6 @@ RUN mkdir -p /data/1/yarn/logs /data/2/yarn/logs /data/3/yarn/logs /data/4/yarn/
 RUN chown -R yarn:yarn /data/1/yarn/local /data/2/yarn/local /data/3/yarn/local /data/4/yarn/local
 RUN chown -R yarn:yarn /data/1/yarn/logs /data/2/yarn/logs /data/3/yarn/logs /data/4/yarn/logs
 
+EXPOSE 8032 8088
+
 CMD service hadoop-yarn-resourcemanager start && tail -F /var/log/hadoop-yarn/yarn*.log
