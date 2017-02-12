@@ -7,6 +7,6 @@ COPY hive-site.xml /etc/hive/conf/
 
 EXPOSE 9083
 
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD (service hive-metastore start && tail -F /var/log/hive/*.log) || tail -f /dev/null
+COPY start-server.sh /usr/local/bin/
+
+CMD start-server.sh

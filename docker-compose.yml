@@ -98,5 +98,10 @@ services:
       - namenode
     networks: ["vnet"]
 
+  hue:
+    build:
+      context: ./hue
+    networks: ["vnet"]
+
 networks:
   vnet:

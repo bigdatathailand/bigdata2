@@ -26,51 +26,28 @@
 <!-- resource).                                                                                 -->
 
 <!-- Hive Execution Parameters -->
-<property>
-  <name>javax.jdo.option.ConnectionURL</name>
-  <value>jdbc:mysql://mariadb/metastore</value>
-  <description>the URL of the MySQL database</description>
-</property>
 
 <property>
-  <name>javax.jdo.option.ConnectionDriverName</name>
-  <value>com.mysql.jdbc.Driver</value>
-</property>
-
-<property>
-  <name>javax.jdo.option.ConnectionUserName</name>
-  <value>hive</value>
-</property>
-
-<property>
-  <name>javax.jdo.option.ConnectionPassword</name>
-  <value>hive_password</value>
-</property>
-
-<property>
-  <name>datanucleus.autoCreateSchema</name>
-  <value>false</value>
-</property>
-
-<property>
-  <name>datanucleus.fixedDatastore</name>
+  <name>hive.support.concurrency</name>
+  <description>Enable Hive's Table Lock Manager Service</description>
   <value>true</value>
 </property>
 
 <property>
-  <name>datanucleus.autoStartMechanism</name> 
-  <value>SchemaTable</value>
-</property> 
+  <name>hive.zookeeper.quorum</name>
+  <description>Zookeeper quorum used by Hive's Table Lock Manager</description>
+  <value>zoo1,zoo2,zoo3</value>
+</property>
+
+<property>
+  <name>hive.metastore.warehouse.dir</name>
+  <value>/user/hive/warehouse</value>
+</property>
 
 <property>
   <name>hive.metastore.uris</name>
   <value>thrift://hivemetastore:9083</value>
-  <description></description>
-</property>
-
-<property>
-<name>hive.metastore.schema.verification</name>
-<value>true</value>
+  <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
 </property>
 
 </configuration>
